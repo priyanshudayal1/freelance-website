@@ -77,6 +77,17 @@ body {
   background-size: 32px 32px;
 }
 
+/* ─── Sketch sheet — a warm drafting sheet on graph paper, for raw
+   thinking that was worked out by hand. Sits distinct from the crisp
+   white record docs beside it. ─── */
+.sketch-sheet {
+  background-color: #e9e2d7;
+  background-image:
+    linear-gradient(to right, rgba(33, 31, 26, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(33, 31, 26, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
 /* ─── Debug mode (Konami code) — the construction becomes visible ─── */
 html.debug :is(main section, header, footer) {
   outline: 1px dashed rgb(156 91 52 / 0.35);

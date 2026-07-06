@@ -56,7 +56,7 @@ export function Evidence() {
               <Doc
                 name="thinking — do we need a queue.md"
                 status="Draft 3"
-                className="flex h-full flex-col"
+                className="sketch-sheet flex h-full flex-col"
               >
                 <div className="flex flex-1 flex-col p-5 sm:p-7">
                   <div className="cursor-crosshair">
