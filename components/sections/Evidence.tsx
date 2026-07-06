@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DecisionTree } from "@/components/workshop/DecisionTree";
 import { Doc } from "@/components/workshop/Doc";
 import { DraftCheck } from "@/components/workshop/icons";
+import { SketchArrow } from "@/components/workshop/SketchArrow";
 import { Stamp } from "@/components/workshop/Stamp";
 import { WorkshopNote } from "@/components/workshop/WorkshopNote";
 
@@ -55,10 +56,53 @@ export function Evidence() {
               <Doc
                 name="thinking — do we need a queue.md"
                 status="Draft 3"
-                className="h-full"
+                className="flex h-full flex-col"
               >
-                <div className="cursor-crosshair p-5 sm:p-7">
-                  <DecisionTree />
+                <div className="flex flex-1 flex-col p-5 sm:p-7">
+                  <div className="cursor-crosshair">
+                    <DecisionTree />
+                  </div>
+
+                  {/* The unused margin of the page: the thinking that
+                      didn’t make it. Centred in the space below the tree. */}
+                  <div className="my-auto grid grid-cols-2 gap-6 border-t border-dashed border-line/70 pt-6">
+                    {/* An approach we considered and threw away */}
+                    <div className="opacity-45">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-fog">
+                        Considered · discarded
+                      </p>
+                      <div className="mt-2.5 space-y-1 font-mono text-[11px] leading-5 text-graphite">
+                        <p className="w-fit line-through decoration-copper/50">
+                          redis queue
+                        </p>
+                        <p className="w-fit line-through decoration-copper/50">
+                          → kafka
+                        </p>
+                        <p className="w-fit line-through decoration-copper/50">
+                          → rabbitmq
+                        </p>
+                      </div>
+                      <p className="mt-2.5 font-hand text-lg leading-tight text-fog">
+                        too much for this project.
+                      </p>
+                    </div>
+
+                    {/* An observation, gesturing back up at the tree */}
+                    <div className="flex flex-col items-end text-right">
+                      <SketchArrow
+                        delay={0.4}
+                        className="-scale-x-100 -scale-y-100"
+                      />
+                      <p className="mt-1 font-hand text-xl leading-tight text-graphite">
+                        queue only when
+                        <br />
+                        complexity earns it.
+                      </p>
+                      <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.16em] text-fog">
+                        Observation
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </Doc>
               <Stamp className="absolute -right-2 top-10 bg-paper/80">
