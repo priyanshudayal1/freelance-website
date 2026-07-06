@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
+/* ─── Clarix palette — warm paper, graphite ink, one copper accent ───
+   The interface must still read beautifully in grayscale. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #faf8f4;
+  --ink: #211f1a;
+  --graphite: #45423b;
+  --fog: #8a857a;
+  --line: #e5e1d8;
+  --copper: #9c5b34;
+  --copper-deep: #7f4526;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-fog: var(--fog);
+  --color-line: var(--line);
+  --color-copper: var(--copper);
+  --color-copper-deep: var(--copper-deep);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
+  --font-hand: var(--font-caveat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  /* Anchor targets clear the sticky header. */
+  scroll-padding-top: 88px;
+}
+
+/* Lenis smooth-scroll plumbing */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--copper) 24%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+}
+
+/* ─── Paper grain — barely there. Drafting paper, not cardboard. ─── */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* ─── Blueprint grid — construction lines, almost invisible ─── */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(33, 31, 26, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(33, 31, 26, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ─── Debug mode (Konami code) — the construction becomes visible ─── */
+html.debug :is(main section, header, footer) {
+  outline: 1px dashed rgb(156 91 52 / 0.35);
+  outline-offset: -6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
